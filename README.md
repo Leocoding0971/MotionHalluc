@@ -19,8 +19,8 @@ We release our benchmark and annotations on Hugging Face:
 👉 **MotionHalluc Benchmark + Annotations**: ([HF link here](https://huggingface.co/datasets/motionhalluc/MotionHalluc))
 
 Please download:
-- `motion_4dHumans/Bench/` (benchmark inputs)
-- `anno/` (all QA annotations)
+- `motion_4dHumans/Bench` (benchmark inputs)
+- `anno` (all QA annotations)
 
 📥 Step 2: Download Fit3D dataset (required)
 
@@ -135,5 +135,25 @@ This repository is released for non-commercial research purposes only.
 
 Users must comply with the license of the Fit3D dataset and any third-party resources used.
 
+# 📌 Citation
 
+Citation for Fit3d and 4D-Human:
+
+```bibtex
+@inproceedings{fieraru2021aifit,
+  title={Aifit: Automatic 3d human-interpretable feedback models for fitness training},
+  author={Fieraru, Mihai and Zanfir, Mihai and Pirlea, Silviu Cristian and Olaru, Vlad and Sminchisescu, Cristian},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={9919--9928},
+  year={2021}
+}
+
+@inproceedings{goel2023humans,
+  title={Humans in 4d: Reconstructing and tracking humans with transformers},
+  author={Goel, Shubham and Pavlakos, Georgios and Rajasegaran, Jathushan and Kanazawa, Angjoo and Malik, Jitendra},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={14783--14794},
+  year={2023}
+}
+```
 
