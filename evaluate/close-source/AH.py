@@ -41,7 +41,7 @@ def normalize_samples(raw_samples: Any) -> Dict[str, Dict[str, Any]]:
 			normalized[sid] = item
 		return normalized
 
-	raise ValueError("samples must be a dict or a list")
+	raise ValueError("samples must be a dict or list")
 
 
 def safe_join_video_path(video_root: str, relative_or_abs: str) -> str:
