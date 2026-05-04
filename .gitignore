@@ -1,35 +1,24 @@
-# 忽略你指定的目录
-videos_output/
-models/
-
-# Python 缓存文件
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 
-# 虚拟环境
 venv/
 .env/
 .venv/
 
-# Jupyter Notebook 检查点
 .ipynb_checkpoints/
 
-# 系统文件
 .DS_Store
 Thumbs.db
 
-# 日志和临时文件
 *.log
 *.tmp
 *.swp
 
-# IDE 配置文件
 .vscode/
 .idea/
 
-# 编译/打包结果
 build/
 dist/
 *.egg-info/
