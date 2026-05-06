@@ -19,8 +19,8 @@ We release our benchmark and annotations on Hugging Face:
 👉 **MotionHalluc Benchmark + Annotations**: ([HF link here](https://huggingface.co/datasets/motionhalluc/MotionHalluc))
 
 Please download:
-- `motion_4dHumans/Bench` (benchmark inputs)
-- `anno` (all QA annotations)
+- `MotionHalluc` (all QA annotations)
+- `motion_4dHumans/Bench` (moiton inputs for PPV)
 
 📥 Step 2: Download Fit3D dataset (required)
 
@@ -39,7 +39,7 @@ After downloading, organize your project as:
 dataset/
 ├── Bench/
 ├── Fit3D/
-anno/
+MotionHalluc/
 ```
 ---
 
