@@ -117,10 +117,10 @@ python TH.py \
 After obtaining predictions:
 ```bash
 python score_all.py \
-  --dh-gt BinaryQA.json \
-  --th-gt Clip_QA.json \
-  --ah1-gt MCQ_1.json \
-  --ah2-gt MCQ_2.json \
+  --dh-gt DH.json \
+  --th-gt TH.json \
+  --ah1-gt AH1.json \
+  --ah2-gt AH2.json \
   --dh-pred dh_pred.json \
   --th-pred th_pred.json \
   --ah1-pred ah1_pred.json \
