@@ -62,7 +62,7 @@ These representations are widely used in our experiments.
 We provide an automatic script to extract clips from raw Fit3D videos:
 
 ```bash
-python produce_clip_from_fit3d.py
+python produce_clip_from_fit3d.py --pairs bench_fit3d_pairs.txt
 ```
 This script will:
 
@@ -85,30 +85,30 @@ export API_KEY="YOUR_API_KEY"
 🚀 Run evaluation
 AH Task
 ```bash
-python AH.py \
-  --samples-json AH1.json \
-  --video-root . \
-  --api-url api_url \
+python evaluate/close-source/AH.py \
+  --samples-json MotionHalluc/AH1.json \
+  --video-root dataset \
+  --api-url YOUR_API_URL \
   --model-name YOUR_MODEL \
   --output-json AH1_results.json
 ```
 
 DH Task
 ```bash
-python DH.py \
-  --samples-json DH.json \
-  --video-root . \
-  --api-url api_url \
+python evaluate/close-source/DH.py \
+  --samples-json MotionHalluc/DH.json \
+  --video-root dataset \
+  --api-url YOUR_API_URL \
   --model-name YOUR_MODEL \
   --output-json DH_results.json
 ```
 
 TH Task
 ```bash
-python TH.py \
-  --samples-json TH.json \
-  --video-root . \
-  --api-url api_url \
+python evaluate/close-source/TH.py \
+  --samples-json MotionHalluc/TH.json \
+  --video-root dataset \
+  --api-url YOUR_API_URL \
   --model-name YOUR_MODEL \
   --output-json TH_results.json
 ```
@@ -116,15 +116,15 @@ python TH.py \
 📊 Final Scoring
 After obtaining predictions:
 ```bash
-python score_all.py \
-  --dh-gt DH.json \
-  --th-gt TH.json \
-  --ah1-gt AH1.json \
-  --ah2-gt AH2.json \
-  --dh-pred dh_pred.json \
-  --th-pred th_pred.json \
-  --ah1-pred ah1_pred.json \
-  --ah2-pred ah2_pred.json \
+python evaluate/score_all.py \
+  --dh-gt MotionHalluc/DH.json \
+  --th-gt MotionHalluc/TH.json \
+  --ah1-gt MotionHalluc/AH1.json \
+  --ah2-gt MotionHalluc/AH2.json \
+  --dh-pred DH_results.json \
+  --th-pred TH_results.json \
+  --ah1-pred AH1_results.json \
+  --ah2-pred AH2_results.json \
   --out scores.json
 ```
 
