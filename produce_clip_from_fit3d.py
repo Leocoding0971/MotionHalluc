@@ -1,26 +1,3 @@
-"""Cut frame-accurate clips from source videos.
-
-Input line format (two whitespace-separated paths):
-	dataset/Fit3D/train/s03/videos/60457274/band_pull_apart.mp4 dataset/Bench/s03/band_pull_apart/band_pull_apart_front_215_304.mp4
-
-Rules:
-- Parse frame range from the output filename suffix: *_215_304.mp4 -> start=215, end=304
-- The range is END-EXCLUSIVE: frames [start, end)
-	Example: 215_304 produces 304-215 = 89 frames.
-- Read from the first path and write the clipped mp4 to the second path (parent dirs created).
-
-Dependency: ffmpeg must be available in PATH.
-
-Usage:
-	# Batch from a pairs.txt (each line: source_mp4 output_mp4)
-	python produce_clip_from_fit3d.py --pairs bench_fit3d_pairs.txt
-
-	# Single job
-	python produce_clip_from_fit3d.py \
-		--fit3d dataset/Fit3D/train/s03/videos/60457274/band_pull_apart.mp4 \
-		--bench dataset/Bench/s03/band_pull_apart/band_pull_apart_front_215_304.mp4
-"""
-
 from __future__ import annotations
 
 import argparse
@@ -54,7 +31,7 @@ def _parse_frame_range_from_bench_filename(bench_path: Path) -> Tuple[int, int]:
 
 	The semantics are end-exclusive: [start, end).
 	"""
-	stem = bench_path.stem  # 不含后缀
+	stem = bench_path.stem # filename without suffix
 	m = FRAME_RE.search(stem)
 	if not m:
 		raise ValueError(
@@ -79,7 +56,7 @@ def _run(cmd: List[str]) -> None:
 		subprocess.run(cmd, check=True)
 	except subprocess.CalledProcessError as exc:
 		cmd_str = " ".join(shlex.quote(c) for c in cmd)
-		raise RuntimeError(f"ffmpeg 执行失败 (exit={exc.returncode}): {cmd_str}") from exc
+		raise RuntimeError(f"ffmpeg execution failed (exit={exc.returncode}): {cmd_str}") from exc
 
 
 def _clip_by_frames(*, ffmpeg: str, input_mp4: Path, start: int, end: int, output_mp4: Path) -> None:
@@ -210,7 +187,6 @@ def main(argv: List[str]) -> int:
 			)
 			return 4
 
-		# 默认就覆盖（ffmpeg -y），这里仅保留检查点
 		if job.bench_out.exists() and not args.overwrite:
 			print(
 				f"[ERR] Output exists and overwrite not allowed: {_display_path(job.bench_out, root=root)}",
