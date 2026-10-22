@@ -1,0 +1,37 @@
+{
+  "mode": "ppv",
+  "input": {
+    "action_name": "band_pull_apart",
+    "action_description": "Pull a resistance band apart with both arms, then return to the starting position.",
+    "stage_descriptions": [
+      "The arms are spread apart at the end of the outward pull.",
+      "The hands return together at the end of the return phase."
+    ],
+    "correction": "Keep your head up and look forward.",
+    "video_a": "aaa.mp4",
+    "video_b": "bbb.mp4",
+    "motion_a": "aaa.npy",
+    "motion_b": "bbb.npy"
+  },
+  "parser": {
+    "api_key": "",
+    "api_url": "",
+    "model_name": "",
+    "timeout": 120,
+    "max_tokens": null,
+    "max_attempts": 10,
+    "retry_delay": 2
+  },
+  "verifier": {
+    "api_key": "",
+    "api_url": "",
+    "model_name": "",
+    "timeout": 600,
+    "max_tokens": 3000,
+    "max_attempts": 10,
+    "retry_delay": 2
+  },
+  "sampling": {"fps": 4, "frame_size": [448, 448]},
+  "max_frame_difference": 10,
+  "output_dir": "./outputs/ppv"
+}

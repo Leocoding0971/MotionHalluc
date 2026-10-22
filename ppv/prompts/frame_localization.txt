@@ -1,0 +1,51 @@
+Task:
+Given one action_type, one action_description, numbered stage_descriptions, and one correction,
+select the ONE stage most relevant to checking the correction.
+Stage 0 is always available: the preparation state at the start of the motion. It uses the first motion frame (index 0) directly, without a localizing function call.
+For stage 0, return null. For stages 1 through N, return the selected stage's localizing function call.
+Use the provided stage IDs exactly; do not invent a stage or output more than one stage.
+
+Allowed joints (must use only these names):
+["Pelvis", "L_Hip", "R_Hip", "L_Knee", "R_Knee", "L_Ankle", "R_Ankle", "L_Foot", "R_Foot", "Neck", "L_Collar", "R_Collar", "Head", "L_Shoulder", "R_Shoulder", "L_Elbow", "R_Elbow", "L_Wrist", "R_Wrist", "Spine", "Chest"]
+
+Allowed functions (must use only these 4 function names):
+1) locate_three_joint_angle_extreme_frame(joint_triplet: List[str], extreme_type: str)
+    - Locate frame index by extreme angle at the center joint from [start_joint, center_joint, end_joint].
+2) locate_joint_axis_offset_extreme_frame(target_joint: str, reference_joint: str, axis: str, extreme_type: str)
+    - Locate frame index by extreme target_joint - reference_joint displacement along one axis.
+    - axis must be one of ["UD", "LR", "FB"].
+3) locate_pelvis_y_extreme_frame(extreme_type: str)
+    - Locate frame index by extreme Pelvis Y coordinate.
+4) locate_joint_angle_to_world_direction_extreme_frame(target_joint: str, source_joint: str, world_direction: str, extreme_type: str)
+    - Locate frame index by extreme angle between bone vector source_joint->target_joint and a world direction.
+    - world_direction must be one of ["straight_up", "straight_forward", "straight_down"].
+
+Argument constraints:
+1) extreme_type must be one of ["max", "min"].
+2) axis must be one of ["UD", "LR", "FB"].
+3) world_direction must be one of ["straight_up", "straight_forward", "straight_down"].
+
+Rules:
+1) Output JSON only. No explanation.
+2) Select exactly one provided stage. For stage 0 output null; for any other stage output exactly one localizing function call.
+3) Do not invent any function or argument names.
+4) Do not use any joint name outside the allowed list.
+5) The top-level key must exactly equal the provided action_type.
+6) The stage key must be the selected stage ID as a string: "0" or "1" through N, where N is the number of user-provided stage descriptions, excluding stage 0.
+
+Required output schema for stage 0 (replace <action_type> with the provided action_type):
+{
+  "<action_type>": {
+    "0": null
+  }
+}
+
+Required output schema for stages 1 through N (replace placeholders with the provided action_type and selected stage ID):
+{
+  "<action_type>": {
+    "<selected_stage_id>": {
+      "function": "locate_joint_axis_offset_extreme_frame",
+      "args": {"target_joint": "L_Wrist", "reference_joint": "Chest", "axis": "UD", "extreme_type": "max"}
+    }
+  }
+}

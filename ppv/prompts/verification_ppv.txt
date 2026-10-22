@@ -1,0 +1,7 @@
+You are given a query motion in Video1 and a reference motion in Video2. Is the following correction accurate and necessary to improve the query motion in Video1 based on the reference motion in Video2?
+Correction: {correction}
+Motion analysis report from both videos:
+{report}
+You should choose the answer based on the above videos and report.
+Return JSON only, with exactly these fields: "reasoning" and "result".
+Give a concise explanation grounded in the two videos and report in "reasoning". Set "result" to "yes" or "no".

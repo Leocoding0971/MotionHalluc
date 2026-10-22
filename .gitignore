@@ -31,3 +31,16 @@ dist/
 *.jpeg
 *.gif
 *.pkl
+
+# Public poster and joint-layout illustrations
+!/assets/**/*.png
+!/assets/**/*.jpg
+!/assets/**/*.jpeg
+!/assets/**/*.gif
+
+# Evaluation outputs, frame caches, and local credentials
+outputs/
+.env
+.env.*
+/experiment.local.json
+/ppv/config.local.json
